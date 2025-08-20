@@ -2,6 +2,8 @@ generator client {
   provider = "prisma-client"
   output   = "../app/generated/prisma"
   previewFeatures = ["driverAdapters"]
+    binaryTargets = ["native", "debian-openssl-3.0.x"]
+
 }
 
 datasource db {
@@ -28,15 +30,19 @@ model Post {
   image_suggestions String?
   content          String
   chat_history     Json
-  chatId           Int     @unique
-  chat             Chat     @relation(fields: [chatId], references: [id])
   created_at       DateTime @default(now())
   updated_at       DateTime @updatedAt
+
+  // Relação com o modelo Chat
+  chat             Chat     @relation(fields: [chatId], references: [id])
+  chatId           String @unique
+
+
   @@map("posts")
 }
 
 model Chat {
-  id        Int     @id @default(autoincrement())
+  id        String   @id @default(uuid())
   title     String?
   content   String
   post      Post?
