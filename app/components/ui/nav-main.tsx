@@ -1,14 +1,14 @@
-import { IconCirclePlusFilled, type Icon } from "@tabler/icons-react";
-import { NavLink } from "react-router";
+import { IconCirclePlusFilled, type Icon } from '@tabler/icons-react';
+import { NavLink } from 'react-router';
 
-import { Button } from "~/components/ui/button";
+import { Button } from '~/components/ui/button';
 import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "~/components/ui/sidebar";
+} from '~/components/ui/sidebar';
 
 export function NavMain({
   items,
@@ -21,23 +21,22 @@ export function NavMain({
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupContent className="flex flex-col gap-2">
+      <SidebarGroupContent className='flex flex-col gap-2'>
         <SidebarMenu>
-          <SidebarMenuItem className="flex items-center gap-2">
-            <SidebarMenuButton
-              tooltip="Quick Create"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
-              asChild
-            >
-              <NavLink to="/post/new">
+          <SidebarMenuItem className='flex items-center gap-2'>
+            <NavLink to='/campaign/new' className='w-full'>
+              <SidebarMenuButton
+                tooltip='Quick Create'
+                className='bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear w-full'
+              >
                 <IconCirclePlusFilled />
                 <span>Quick Create</span>
-              </NavLink>
-            </SidebarMenuButton>
+              </SidebarMenuButton>
+            </NavLink>
           </SidebarMenuItem>
         </SidebarMenu>
         <SidebarMenu>
-          {items.map((item) => (
+          {items.map(item => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton tooltip={item.title} asChild>
                 <NavLink to={item.url}>

@@ -1,34 +1,34 @@
-import { IconCirclePlusFilled, type Icon } from "@tabler/icons-react"
-import type { LucideIcon } from "lucide-react"
-import { NavLink } from "react-router"
+import { IconCirclePlusFilled, type Icon } from '@tabler/icons-react';
+import type { LucideIcon } from 'lucide-react';
+import { NavLink } from 'react-router';
 import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "~/components/ui/sidebar"
+} from '~/components/ui/sidebar';
 
 export function NavMain({
   items,
 }: {
   items: {
-    title: string
-    url: string
-    icon?: Icon | LucideIcon
-  }[]
+    title: string;
+    url: string;
+    icon?: Icon | LucideIcon;
+  }[];
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupContent className="flex flex-col gap-2">
+      <SidebarGroupContent className='flex flex-col gap-2'>
         <SidebarMenu>
-          <SidebarMenuItem className="flex items-center gap-2">
+          <SidebarMenuItem className='flex items-center gap-2'>
             <SidebarMenuButton
-              tooltip="Quick Create"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
+              tooltip='Quick Create'
+              className='bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear'
               asChild
             >
-              <NavLink to="/post/new">
+              <NavLink to='/campaign/new'>
                 <IconCirclePlusFilled />
                 <span>Quick Create</span>
               </NavLink>
@@ -36,20 +36,18 @@ export function NavMain({
           </SidebarMenuItem>
         </SidebarMenu>
         <SidebarMenu>
-          {items.map((item) => (
+          {items.map(item => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton tooltip={item.title} asChild>
-               <NavLink to={item.url}>
-                  {item.icon && <item.icon  />}
-                <span>{item.title}</span>
-               </NavLink>
-                
-                  
+                <NavLink to={item.url}>
+                  {item.icon && <item.icon />}
+                  <span>{item.title}</span>
+                </NavLink>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
-  )
+  );
 }

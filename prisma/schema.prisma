@@ -19,17 +19,22 @@ model User {
   updatedAt DateTime @updatedAt
   @@map("users")
 }
-model Post {
-  id               String   @id @default(uuid())
-  title            String
-  description      String
-  type             String
-  copy_ideas       String
-  hashtags         String?
-  call_to_action   String
-  image_suggestions String?
-  content          String
-  chat_history     Json
+model GrowthCampaign {
+  id              String   @id @default(uuid())
+  name            String   // nome interno da campanha
+  objective       String   // objetivo principal (ex: vendas, leads, lançamento)
+  description     String   // descrição geral da campanha
+  targetAudience  String   // público-alvo principal
+  budget          String?  // orçamento total ou faixa
+  duration        String?  // duração da campanha (ex: 30 dias)
+  
+  strategy        String?  // estratégia geral de growth sugerida
+  channelPlan     String?  // plano de distribuição por canal (Meta, Google etc)
+  copyIdeas       String?  // ideias de copy e headlines
+  creativeIdeas   String?  // ideias de criativos e formatos
+  callToAction    String?  // CTAs sugeridos
+  kpiGoals        String?  // metas esperadas (CPC, CPA, ROAS etc)
+
   created_at       DateTime @default(now())
   updated_at       DateTime @updatedAt
 
@@ -37,15 +42,14 @@ model Post {
   chat             Chat     @relation(fields: [chatId], references: [id])
   chatId           String @unique
 
-
-  @@map("posts")
+  @@map("campaigns")
 }
 
 model Chat {
   id        String   @id @default(uuid())
   title     String?
   content   String
-  post      Post?
+  campaign  GrowthCampaign?
   created_at       DateTime @default(now())
   updated_at       DateTime @updatedAt
   @@map("chats")

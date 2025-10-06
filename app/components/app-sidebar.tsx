@@ -1,11 +1,14 @@
-import * as React from "react"
+import * as React from 'react';
 import {
-  IconCamera, IconDashboard, IconFileAi,
-  IconFileDescription, IconInnerShadowTop,
-  IconListDetails
-} from "@tabler/icons-react"
+  IconCamera,
+  IconDashboard,
+  IconFileAi,
+  IconFileDescription,
+  IconInnerShadowTop,
+  IconListDetails,
+} from '@tabler/icons-react';
 
-import { NavMain } from "~/components/nav-main"
+import { NavMain } from '~/components/nav-main';
 import {
   Sidebar,
   SidebarContent,
@@ -13,97 +16,94 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "~/components/ui/sidebar"
-import { UserIcon } from "lucide-react"
+} from '~/components/ui/sidebar';
+import { UserIcon } from 'lucide-react';
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: 'shadcn',
+    email: 'm@example.com',
   },
   navMain: [
     {
-      title: "Dashboard",
-      url: "/",
+      title: 'Dashboard',
+      url: '/',
       icon: IconDashboard,
     },
     {
-      title: "Posts",
-      url: "/posts",
+      title: 'Campanhas',
+      url: '/campaigns',
       icon: IconListDetails,
     },
     {
-      title: "Users",
-      url: "/users",
+      title: 'Users',
+      url: '/users',
       icon: UserIcon,
     },
-    
   ],
   navClouds: [
     {
-      title: "Capture",
+      title: 'Capture',
       icon: IconCamera,
       isActive: true,
-      url: "#",
+      url: '#',
       items: [
         {
-          title: "Active Proposals",
-          url: "#",
+          title: 'Active Proposals',
+          url: '#',
         },
         {
-          title: "Archived",
-          url: "#",
+          title: 'Archived',
+          url: '#',
         },
       ],
     },
     {
-      title: "Proposal",
+      title: 'Proposal',
       icon: IconFileDescription,
-      url: "#",
+      url: '#',
       items: [
         {
-          title: "Active Proposals",
-          url: "#",
+          title: 'Active Proposals',
+          url: '#',
         },
         {
-          title: "Archived",
-          url: "#",
+          title: 'Archived',
+          url: '#',
         },
       ],
     },
     {
-      title: "Prompts",
+      title: 'Prompts',
       icon: IconFileAi,
-      url: "#",
+      url: '#',
       items: [
         {
-          title: "Active Proposals",
-          url: "#",
+          title: 'Active Proposals',
+          url: '#',
         },
         {
-          title: "Archived",
-          url: "#",
+          title: 'Archived',
+          url: '#',
         },
       ],
     },
   ],
-
-  
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
+    <Sidebar collapsible='offcanvas' {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
+              className='data-[slot=sidebar-menu-button]:!p-1.5'
             >
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
+              <a href='#'>
+                <IconInnerShadowTop className='!size-5' />
+                <span className='text-base font-semibold'>Acme Inc.</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -113,5 +113,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }
