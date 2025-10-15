@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useFetcher, useLoaderData } from 'react-router';
+import { useFetcher, useLoaderData, useRevalidator } from 'react-router';
 
 import { Avatar } from '~/components/ui/avatar';
 import { Button } from '~/components/ui/button';
@@ -14,6 +14,7 @@ export function ChatInterface() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const fetcher = useFetcher();
+  const revalidator = useRevalidator();
   const isLoading = fetcher.state !== 'idle';
   const { chatId, messages } = useLoaderData<typeof loader>();
 
@@ -57,6 +58,16 @@ export function ChatInterface() {
       { method: 'POST', action: '/api/chat' },
     );
   }
+
+  // Efeito para lidar com a resposta do fetcher
+  useEffect(() => {
+    if (fetcher.state === 'idle' && fetcher.data) {
+      // Remove mensagens pendentes
+      setLocalMessages(prev => prev.filter(msg => !msg.pending));
+      // Recarrega os dados da página sem recarregar a página inteira
+      revalidator.revalidate();
+    }
+  }, [fetcher.state, fetcher.data, revalidator]);
 
   return (
     <Card className='flex flex-col h-[calc(100vh-110px)] w-full border shadow-sm pb-0 pt-0'>

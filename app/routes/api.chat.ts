@@ -57,6 +57,14 @@ export async function action({ request }: Route.ActionArgs) {
         content: JSON.stringify([chatMessage, answer]),
       },
     });
-    return redirect(`/task/new?chat=${chat.id}`);
+    return redirect(`/campaign/new?chat=${chat.id}`);
   }
+  
+  // Retorna uma resposta de sucesso para chats existentes
+  return new Response(JSON.stringify({ success: true, chatId: chat?.id }), {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 }
